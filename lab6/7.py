@@ -1,34 +1,33 @@
 # Задание 7. Поменять местами столбцы, содержащие минимум и максимум всей матрицы.
 # При повторении значений выбираем первые вхождения при просмотре по строкам.
 
-m = int(input("Введите положительное число строк M: "))  # Вводим число строк.
-n = int(input("Введите положительное число столбцов N: "))  # Вводим число столбцов.
-matrix = []  # Создаём список строк матрицы.
+m = int(input("Введите положительное число строк M: "))  
+n = int(input("Введите положительное число столбцов N: "))  
+matrix = []  
 
-for i in range(m):  # Заполняем матрицу по строкам.
-    row = []  # Создаём очередную строку.
-    for j in range(n):  # Заполняем её элементы.
-        value = float(input(f"Введите A{i + 1},{j + 1}: "))  # Вводим число в указанной позиции.
-        row.append(value)  # Добавляем число в строку.
-    matrix.append(row)  # Сохраняем строку в матрице.
+for i in range(m):  
+    row = []  
+    for j in range(n):  
+        value = float(input(f"Введите A{i + 1},{j + 1}: ")) 
+        row.append(value)  
+    matrix.append(row) 
 
-minimum = matrix[0][0]  # Пока считаем первый элемент минимумом всей матрицы.
-maximum = matrix[0][0]  # Пока считаем его же максимумом.
-min_column = 0  # Запоминаем индекс столбца с минимумом.
-max_column = 0  # Запоминаем индекс столбца с максимумом.
+minimum = matrix[0][0] 
+maximum = matrix[0][0]  
+min_column = 0  
+max_column = 0  
 
-for i in range(m):  # Просматриваем матрицу сверху вниз по строкам.
-    for j in range(n):  # В каждой строке идём слева направо.
+for i in range(m):  
+    for j in range(n):  
         if matrix[i][j] < minimum:  # Проверяем, нашли ли новый минимум всей матрицы.
-            minimum = matrix[i][j]  # Обновляем минимальное значение.
-            min_column = j  # Запоминаем столбец, в котором оно находится.
+            minimum = matrix[i][j] 
+            min_column = j  
         if matrix[i][j] > maximum:  # Проверяем, нашли ли новый максимум.
-            maximum = matrix[i][j]  # Обновляем максимальное значение.
-            max_column = j  # Запоминаем столбец с максимумом.
+            maximum = matrix[i][j]  
+            max_column = j  
+for row in matrix:  
+    row[min_column], row[max_column] = row[max_column], row[min_column]  
 
-for row in matrix:  # Для обмена целых столбцов нужно изменить каждую строку.
-    row[min_column], row[max_column] = row[max_column], row[min_column]  # Меняем элементы двух выбранных столбцов в этой строке.
-
-print("Преобразованная матрица:")  # Выводим подпись к результату.
-for row in matrix:  # Перебираем изменённые строки.
-    print(*row)  # Выводим матрицу построчно.
+print("Преобразованная матрица:") 
+for row in matrix:  
+    print(*row)  
